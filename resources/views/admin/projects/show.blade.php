@@ -12,7 +12,8 @@
                 <div class="d-flex justify-content-evenly py-3">
 
                     <a href="{{ route('admin.projects.edit', $project) }}">
-                        <i class="fas fa-pencil-alt fa-fw fa-3x text-light bg-primary p-1 rounded"><span class="px-3 text-primary">EDIT</span></i>
+                        <i class="fas fa-pencil-alt fa-fw fa-3x text-light bg-primary p-1 rounded"><span
+                                class="px-3 text-primary">EDIT</span></i>
                     </a>
 
                     <!-- Modal  button -->
@@ -63,6 +64,9 @@
                     <div class="card-body">
                         <h4 class="card-title">{{ $project->title }}</h4>
                         <p class="card-text">{{ $project->description }}</p>
+                        <div class="card-text">
+                            <strong>Project type: </strong> {{ $project->type ? $project->type->name : 'No Type' }}
+                        </div>
                     </div>
                 </div>
 
