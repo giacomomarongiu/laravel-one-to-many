@@ -3,7 +3,8 @@
 @section('content')
     <div class="container">
 
-        <form class="form-control bg-light p-4" action="{{ route('admin.projects.store') }}" method="post" enctype="multipart/form-data">
+        <form class="form-control bg-light p-4" action="{{ route('admin.projects.store') }}" method="post"
+            enctype="multipart/form-data">
             @csrf
 
             <!-- Input for title-->
@@ -17,11 +18,26 @@
             </div>
 
 
+            <!-- Input for type-->
+
+            <div class="mb-3">
+                <label for="type_id" class="form-label">Type</label>
+                <select class="form-select" name="type_id" id="type_id">
+                    <option selected disabled>Select a type</option>
+                    @foreach ($types as $type)
+                        <option value="{{ $type->id }}" {{ $type->id == old('type_id') ? 'selected' : '' }}>
+                            {{ $type->name }}</option>
+                    @endforeach
+
+                </select>
+            </div>
+
+
             <!-- Input for image-->
             <div class="mb-3">
                 <label for="img" class="form-label">Image</label>
                 <input type="file" class="form-control @error('img') is-invalid @enderror" name="img" id="img"
-                    aria-describedby="imgHelper" placeholder="img" value="{{ old('img') }}"  />
+                    aria-describedby="imgHelper" placeholder="img" value="{{ old('img') }}" />
                 @error('img')
                     <div class="text-danger">{{ $message }}</div>
                 @enderror
@@ -44,7 +60,8 @@
                 <label for="end_date" class="form-label">Project end date
                 </label>
                 <input type="text" class="form-control @error('end_date') is-invalid @enderror" name="end_date"
-                    id="end_date" aria-describedby="end_dateHelper" placeholder="end_date" value="{{ old('end_date') }}" />
+                    id="end_date" aria-describedby="end_dateHelper" placeholder="end_date"
+                    value="{{ old('end_date') }}" />
                 @error('end_date')
                     <div class="text-danger">{{ $message }}</div>
                 @enderror
