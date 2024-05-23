@@ -60,7 +60,13 @@
 
                 </div>
                 <div class="card text-start">
-                    <img class="card-img-top" src="{{ $project->img }}" alt="">
+                    @if (Str::startsWith($project->img, 'https://'))
+                        <img width="" loading="lazy" src="{{ $project->img }}" alt="">
+                    @else
+                        <!--else i will use asset(...) for print it  -->
+                        <img width="" loading="lazy" src="{{ asset('storage/' . $project->img) }}"
+                            alt="{{ $project->title }}">
+                    @endif
                     <div class="card-body">
                         <h4 class="card-title">{{ $project->title }}</h4>
                         <p class="card-text">{{ $project->description }}</p>

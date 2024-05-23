@@ -44,11 +44,13 @@ class ProjectController extends Controller
         $slug = Str::slug($request->title, '-');
         $val_data['slug'] = $slug;
 
-
-        //Uploading img
-        $img_path = Storage::put('uploads', $val_data['img']);
-        // Path assigned at my istance
-        $val_data['img'] = $img_path;
+        //Checking if there is an img
+        if ($request->has('img')) {
+            //Uploading img
+            $img_path = Storage::put('uploads', $val_data['img']);
+            // Path assigned at my istance
+            $val_data['img'] = $img_path;
+        }
 
         //Creating new istance
         Project::create($val_data);
