@@ -50,7 +50,7 @@ class TypeController extends Controller
      */
     public function show(Type $type)
     {
-        //
+        return view('admin.types.show', compact('type'));
     }
 
     /**
@@ -58,7 +58,8 @@ class TypeController extends Controller
      */
     public function edit(Type $type)
     {
-        //
+        return view('admin.types.edit', compact('type'));
+
     }
 
     /**
@@ -66,7 +67,13 @@ class TypeController extends Controller
      */
     public function update(UpdateTypeRequest $request, Type $type)
     {
-        //
+        $val_data = $request->validated();
+        //slug
+        $slug = Str::slug($request->name, '-');
+        $val_data['slug'] = $slug;
+        //update my istance
+        $type->update($val_data);
+        return to_route('admin.types.index', $type);
     }
 
     /**
