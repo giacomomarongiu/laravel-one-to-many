@@ -1,9 +1,10 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Admin\TypeController;
+
 use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Admin\TypeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,13 +23,13 @@ Route::get('/', function () {
 });
 
 Route::middleware(['auth', 'verified'])
-// For chain
+    // For chain
     ->name('admin.')
     // Prefix for views
     ->prefix('admin')
     ->group(function () {
         // Default route changed
-        Route::get('/', [DashboardController::class, 'index'])->name('dashboard'); 
+        Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
         // Route for my projects
         Route::resource('projects', ProjectController::class);
         Route::resource('types', TypeController::class);

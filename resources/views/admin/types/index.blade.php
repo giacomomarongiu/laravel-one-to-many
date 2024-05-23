@@ -29,7 +29,7 @@
                             <td>{{ $type->name }}</td>
                             <td>{{ $type->slug }}</td>
 
-                            <td class="text-center">
+                            <td class="">
                                 <a class="" href="{{ route('admin.types.show', $type) }}">
                                     <i class="fas fa-eye fa-sm fa-fw"></i>
                                 </a>
